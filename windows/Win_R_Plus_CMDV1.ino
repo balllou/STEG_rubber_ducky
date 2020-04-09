@@ -51,11 +51,10 @@ void loop()
   Keyboard.press('r');
   Keyboard.releaseAll();
   delay(1000);
-  Keyboard.print(fr2en("cmd"));
-  Keyboard.press(KEY_LEFT_CTRL);
-  Keyboard.press(KEY_LEFT_SHIFT);
-  Keyboard.print("\n");//faire ctrl+shift +entre
-  Keyboard.releaseAll();
+  Keyboard.print(fr2en("powershell")+"\n");
+  //Keyboard.press(KEY_LEFT_CTRL);
+  // Keyboard.press(KEY_LEFT_SHIFT);
+  //Keyboard.print("\n");//faire ctrl+shift +entre
   delay(1000);
   digitalWrite(ledPin, LOW);
   //count = count +1;
