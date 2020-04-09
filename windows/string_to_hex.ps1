@@ -18,7 +18,6 @@ function ConvertTo-Hex {
     }
 }
 
-
 function GetGuids {
     # finding the GUID to set screen brightness
 
@@ -62,29 +61,21 @@ function GetGuids {
     return $primary_GUID, $sub_group_GUID,$guid_aff
 }
 
-
 $ar1 = @("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f")
 $ar2 = @("0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111")
 
+#########################################################################################################################
 # read the file to translate to hex
 $test = Get-Content -Raw .\test.txt
+#########################################################################################################################
 
-$hex = ($test | ConvertTo-Hex)
-
-#write-output $hex
-#write-output $0
-
-$hex -replace "0", $0
-
-$hex_old = $hex
+$hex_old = ($test | ConvertTo-Hex)
 
 For ($i=0; $i -le 15; $i++) {
     $hex_new = $hex_old -replace $ar1[$i], $ar2[$i]
     $hex_old = $hex_new
     }
 
-#write-output $hex_old.length
-#write-output $hex_old
 For ($i=0; $i -lt $hex_old.length; $i++) {
     $GUIDs = GetGuids
     if($hex_old[$i] -eq "0"){
@@ -105,4 +96,4 @@ For ($i=0; $i -lt $hex_old.length; $i++) {
 $GUIDs = GetGuids
 powercfg -SetDcValueIndex $GUIDs[0] $GUIDs[1] $GUIDs[2] 50
 powercfg -SetAcValueIndex $GUIDs[0] $GUIDs[1] $GUIDs[2] 50
-        powercfg -S $GUIDs[0]
+powercfg -S $GUIDs[0]
