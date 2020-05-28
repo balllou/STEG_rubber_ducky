@@ -29,8 +29,11 @@ for (( i=0; i<${#binchain}; i++ )); do
   printf "${binchain:$i:1}\n"
   if [ "${binchain:$i:1}" -eq "1" ]
   then
-    xrandr --output $(xrandr|grep ' connected '|awk '{print $1}' ) --brightness 100
-  elif
-    xrandr --output $(xrandr|grep ' connected '|awk '{print $1}' ) --brightness 0
+    xrandr --output $(xrandr|grep ' connected '|awk '{print $1}' ) --brightness 2
+  else
+    xrandr --output $(xrandr|grep ' connected '|awk '{print $1}' ) --brightness 0.5
   fi
+  sleep 1
 done
+
+xrandr --output $(xrandr|grep ' connected '|awk '{print $1}' ) --brightness 10
